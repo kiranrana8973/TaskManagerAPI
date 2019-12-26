@@ -8,8 +8,6 @@ const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/upload');
 const auth = require('./auth');
 const cors = require('cors');
-const multer = require('multer');
-const upload = multer();
 
 
 const app = express();
@@ -17,7 +15,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.options('*', cors());
 app.use(express.urlencoded({extended: true }));
-app.use(upload.array());
+
 app.use(express.static(__dirname + "/public"));
 
 mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
